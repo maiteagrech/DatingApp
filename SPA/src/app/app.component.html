@@ -1,0 +1,14 @@
+<mat-card>
+    <mat-card-content>
+        <mat-selection-list #shoes [multiple]="false">
+            <mat-list-option *ngFor="let user of users" [value]="user">
+                {{ user.id }} --- {{ user.userName }}
+            </mat-list-option>
+        </mat-selection-list>
+        <mat-divider></mat-divider>
+        <br>
+        <mat-card-subtitle>
+            User Id: {{shoes.selectedOptions.selected[0]?.value.id}}
+        </mat-card-subtitle>
+    </mat-card-content>
+</mat-card>
