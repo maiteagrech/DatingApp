@@ -1,0 +1,70 @@
+<div class="authentication-layout">
+  <div class="authentication-layout-box">
+    <mat-card>
+      <mat-card-content>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          <div class="text-center">
+            <mat-icon class="logo-icon">bookmark</mat-icon>
+            <h4 class="m-t-0">Register to <span class="deco-text">Dating App</span></h4>
+          </div>
+          <div *ngIf="msg" class="bg-danger p-10 text-white m-b-10">{{ msg }}</div>
+          <div fxLayout="row wrap">
+            <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+              <mat-form-field>
+                <input matInput autocomplete="off" placeholder="User Name" type="text"
+                  [formControl]="registerForm.controls['username']" onCopy='return false' onPaste='return false'>
+              </mat-form-field>
+              <small
+                *ngIf="registerForm.controls['username'].hasError('required') && registerForm.controls['username'].touched"
+                class="text-danger support-text">You must include your name.</small>
+            </div>
+            <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+              <mat-form-field>
+                <input matInput autocomplete="off" placeholder="Password" [type]="passwordHide ? 'password': 'text'"
+                  [formControl]="registerForm.controls['password']" onCopy='return false' onPaste='return false'>
+                <mat-icon class="b-c-p" matSuffix (click)='passwordHide = !passwordHide'>{{ passwordHide ?
+                  'visibility_off' :
+                  'visibility'}}</mat-icon>
+              </mat-form-field>
+              <small
+                *ngIf="registerForm.controls['password'].hasError('required') && registerForm.controls['password'].touched"
+                class="text-danger support-text">You must include password.</small>
+            </div>
+            <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+              <mat-form-field>
+                <input matInput autocomplete="off" placeholder="Confirm Password"
+                  [type]="confirmPasswordHide ? 'password': 'text'"
+                  [formControl]="registerForm.controls['confirmPassword']" onCopy='return false' onPaste='return false'>
+                <mat-icon class="b-c-p" matSuffix (click)='confirmPasswordHide = !confirmPasswordHide'>{{
+                  confirmPasswordHide ?
+                  'visibility_off' :
+                  'visibility'}}</mat-icon>
+              </mat-form-field>
+              <small
+                *ngIf="registerForm.controls['confirmPassword'].hasError('required') && registerForm.controls['confirmPassword'].touched"
+                class="text-danger support-text">You must include confirm password.</small>
+              <small *ngIf="registerForm.controls['confirmPassword'].errors?.equalTo"
+                class="text-danger support-text">Passwords do not math.</small>
+            </div>
+            <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+              <mat-checkbox color='primary'>I agree to the all
+                <a href="javascript:void(0)" class="b-c-p text-info">terms</a>.
+              </mat-checkbox>
+            </div>
+            <br>
+            <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+              <button mat-raised-button class="btn-block btn-lg m-t-20 m-b-20 bg-green text-white" type="submit"
+                [disabled]="!registerForm.valid">Create your account</button>
+            </div>
+            <br>
+            <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100" class="text-center">
+              <span>Don't have an account?
+                <a [routerLink]="['/authentication/login']" class="text-info b-c-p">Login</a>
+              </span>
+            </div>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+.sidebar {
+  width: 263px;
+}
+.user-profile {
+  position: relative;
+  background-size: cover;
+  height: 160px;
+  background: url(/assets/images/background/user-info.jpg) no-repeat;
+}
+.profile-text {
+  padding: 5px 0px;
+  position: relative;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.special-text {
+  color: #ffffff !important;
+  width: auto;
+  padding: 6px 30px;
+  background: rgba(0, 0, 0, 0.5);
+  display: block;
+  white-space: nowrap;
+}
+.profile-img {
+  width: 50px;
+  margin-left: 30px;
+  padding: 31px 0;
+  border-radius: 100%;
+}
+::before {
+  animation: 2.5s blow 0s linear infinite;
+  position: absolute;
+  content: "";
+  width: 50px;
+  height: 50px;
+  top: 31px;
+  margin: 0 auto;
+  border-radius: 50%;
+  z-index: 0;
+}
+.menu-text {
+  color: #B0B1AD;
+}
+.icon-position {
+  padding-left: 20px;
+}
+.span-position {
+  padding-left: 15px;
+}
+.list-item-style {
+  border-radius: 10px;
+  width: 82% !important;
+  margin-left: 20px !important;
+}
+mat-icon {
+  color: #B0B1AD;
+  margin-right: 10px;
+}
+.active-link mat-list-item, .active-link span, .active-link mat-icon {
+  background-color: #E7F0E9;
+  color: #2E312F;
+}

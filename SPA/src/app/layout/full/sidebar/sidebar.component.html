@@ -1,0 +1,39 @@
+<div class="sidebar">
+    <div class="user-profile text-center">
+        <div class="profile-img">
+            <img src="assets/images/users/profile.png" alt="user">
+        </div>
+        <div class="profile-text">
+            <a class="special-text">Welcome {{ username | titlecase }}</a>
+        </div>
+    </div>
+    <p class="menu-text text-center">Menu</p>
+    <mat-nav-list>
+        <div routerLinkActive="active-link">
+            <mat-list-item [routerLink]="['/content/matches']" class="list-item-style">
+                <mat-icon>favorite_border</mat-icon>
+                <a>
+                    <span class="label">{{'Matches' | uppercase}}</span>
+                </a>
+            </mat-list-item>
+        </div>
+        <br>
+        <div routerLinkActive="active-link">
+            <mat-list-item [routerLink]="['/content/lists']" class="list-item-style">
+                <mat-icon>view_list</mat-icon>
+                <a>
+                    <span class="label">{{'Lists' | uppercase}}</span>
+                </a>
+            </mat-list-item>
+        </div>
+        <br>
+        <div routerLinkActive="active-link">
+            <mat-list-item [routerLink]="['/content/messages']" class="list-item-style" routerLinkActive="active-link">
+                <mat-icon>library_books</mat-icon>
+                <a>
+                    <span class="label">{{'Messages' | uppercase}}</span>
+                </a>
+            </mat-list-item>
+        </div>
+    </mat-nav-list>
+</div>

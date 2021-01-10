@@ -1,0 +1,8 @@
+.example-container {
+  width: auto;
+  height: 100%;
+}
+#mat-menu-button{
+  justify-content: space-between !important;
+  margin-left: auto !important;
+} 

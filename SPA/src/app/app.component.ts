@@ -1,5 +1,8 @@
 import { HttpClient } from "@angular/common/http";
-import { Component, OnInit, resolveForwardRef } from "@angular/core";
+import { Component, OnInit, Output, resolveForwardRef } from "@angular/core";
+import { EventEmitter } from "@angular/core";
+import { JwtHelperService } from "@auth0/angular-jwt";
+import { AccountService } from "./authentication/_services/account.service";
 
 @Component({
   selector: "app-root",
@@ -7,23 +10,16 @@ import { Component, OnInit, resolveForwardRef } from "@angular/core";
   styleUrls: ["./app.component.css"],
 })
 export class AppComponent implements OnInit {
-  constructor(private http: HttpClient) {}
 
+  constructor(private accountService: AccountService) {}
+
+  // jwtHelper = new JwtHelperService();
   title = "DatingApp";
-  users: any;
-  ngOnInit(): void {
-    this.getUsers();
-  }
-  getUsers() {
-    const url = "http://localhost:5000/api/users";
-    this.http.get(url).subscribe(
-      (responseData) => {
-        this.users = responseData;
-        console.log(this.users);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+  
+  ngOnInit() {
+  //   const token = localStorage.getItem('token');
+  //   if(token) {
+  //     this.accountService.decodedToken = this.jwtHelper.decodeToken(token);
+  //   }
   }
 }
