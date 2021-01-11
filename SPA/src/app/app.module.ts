@@ -13,6 +13,7 @@ import { BlankComponent } from "./layout/blank/blank.component";
 import { ContentModule } from "./content/content.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { JwtModule } from "@auth0/angular-jwt";
+import { SharedModule } from "./shared/shared.module";
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -39,6 +40,7 @@ export function tokenGetter() {
     AuthenticationModule,
     ContentModule,
     BrowserModule,
+    SharedModule,
     BrowserAnimationsModule,
   ],
   providers: [],

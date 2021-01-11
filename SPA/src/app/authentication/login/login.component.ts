@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     };
     this.acountService.login(this.model).subscribe(response => {
       console.log(response);
-      this.router.navigate(["/content/matches"]); 
+      this.router.navigate(["/content/members"]); 
     }, error => {
       // this.router.navigate(["/authentication/login"]);
       this.msg = error.error;

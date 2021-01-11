@@ -10,8 +10,8 @@
 .profile-text {
   padding: 5px 0px;
   position: relative;
-  cursor: pointer;
   white-space: nowrap;
+  cursor: default;
 }
 .special-text {
   color: #ffffff !important;

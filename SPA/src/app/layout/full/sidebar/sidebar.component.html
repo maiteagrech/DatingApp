@@ -4,16 +4,16 @@
             <img src="assets/images/users/profile.png" alt="user">
         </div>
         <div class="profile-text">
-            <a class="special-text">Welcome {{ username | titlecase }}</a>
+            <span class="special-text">Welcome {{ username | titlecase }}</span>
         </div>
     </div>
     <p class="menu-text text-center">Menu</p>
     <mat-nav-list>
         <div routerLinkActive="active-link">
-            <mat-list-item [routerLink]="['/content/matches']" class="list-item-style">
+            <mat-list-item [routerLink]="['/content/members']" class="list-item-style">
                 <mat-icon>favorite_border</mat-icon>
                 <a>
-                    <span class="label">{{'Matches' | uppercase}}</span>
+                    <span class="label">{{'Members' | uppercase}}</span>
                 </a>
             </mat-list-item>
         </div>

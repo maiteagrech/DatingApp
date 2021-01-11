@@ -16,7 +16,7 @@ export const AppRoutes: Routes = [
       }, 
       {
         path: 'content',
-        redirectTo: '/content/matches',
+        redirectTo: '/content/members',
         pathMatch: 'full'
       },       
       {
