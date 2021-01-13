@@ -1,6 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 
 import { AppComponent } from "./app.component";
 import { LayoutComponent } from "./layout/full/layout.component";
@@ -14,6 +14,7 @@ import { ContentModule } from "./content/content.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { JwtModule } from "@auth0/angular-jwt";
 import { SharedModule } from "./shared/shared.module";
+import { ErrorInterceptor } from "./shared/interceptors/error.interceptor";
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -43,7 +44,11 @@ export function tokenGetter() {
     SharedModule,
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS, 
+    useClass: ErrorInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

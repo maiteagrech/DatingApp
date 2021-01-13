@@ -2,6 +2,7 @@ import { Routes } from "@angular/router";
 import { AuthGuard } from "./auth.guard";
 import { BlankComponent } from "./layout/blank/blank.component";
 import { LayoutComponent } from "./layout/full/layout.component";
+import { TestErrorsComponent } from "./shared/errors/test-errors.component";
 
 export const AppRoutes: Routes = [
   {
@@ -40,6 +41,10 @@ export const AppRoutes: Routes = [
           ),
       }, 
     ],
+  },
+  {
+    path: 'errors',
+    component: TestErrorsComponent
   },
   { path: "**", redirectTo: "/authentication/404" },
 ];

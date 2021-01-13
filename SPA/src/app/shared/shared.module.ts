@@ -1,11 +1,12 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
-import { SpinnerComponent } from "./spinner.component";
+import { TestErrorsComponent } from './errors/test-errors.component';
+import { MaterialModule } from "../material/material.module";
 
 @NgModule({
-    declarations: [SpinnerComponent],
-    imports: [CommonModule],
-    exports: [SpinnerComponent]
+    declarations: [TestErrorsComponent],
+    imports: [CommonModule, MaterialModule],
+    exports: [TestErrorsComponent]
 })
 export class SharedModule {
 

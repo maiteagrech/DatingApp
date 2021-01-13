@@ -18,6 +18,10 @@ body {
 .deco-text {
   color: #97ad53;
 }
+.text-bold {
+  font-weight: bold;
+  color:#99abb4;
+}
 .bg-danger {
   background-color: #e15738 !important;
 }

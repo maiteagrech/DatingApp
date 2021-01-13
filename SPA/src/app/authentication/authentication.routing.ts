@@ -2,6 +2,7 @@ import { Routes } from "@angular/router";
 import { AuthGuard } from "../auth.guard";
 import { BlankComponent } from "../layout/blank/blank.component";
 import { Error404Component } from "./error/404/error-404.component";
+import { Error500Component } from "./error/500/error-500.component";
 import { LoginComponent } from "./login/login.component";
 import { RegisterComponent } from "./register/register.component";
 
@@ -19,7 +20,10 @@ export const AuthenticationRoutes: Routes = [
         path: "404",
         component: Error404Component,
       },
-    
+      {
+        path: "500",
+        component: Error500Component,
+      },
     ]
   },
 ];
