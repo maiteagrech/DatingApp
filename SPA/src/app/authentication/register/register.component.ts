@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AccountService } from '../_services/account.service';
+import { AccountService } from '../../../core/auth/account.service';
 import { CustomValidators } from 'ngx-custom-validators';
 
 const username = new FormControl('', Validators.required);

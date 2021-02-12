@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { AccountService } from "../_services/account.service";
+import { AccountService } from "../../../core/auth/account.service";
 
 @Component({
   selector: "app-login",
@@ -26,8 +26,7 @@ export class LoginComponent implements OnInit {
       username: this.loginForm.get("username").value,
       password: this.loginForm.get("password").value,
     };
-    this.acountService.login(this.model).subscribe(response => {
-      console.log(response);
+    this.acountService.login(this.model).subscribe(() => {
       this.router.navigate(["/content/members"]); 
     }, error => {
       // this.router.navigate(["/authentication/login"]);

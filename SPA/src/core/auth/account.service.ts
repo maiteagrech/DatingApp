@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { map } from "rxjs/operators";
 import { User } from "src/app/models/user";
-import { ReplaySubject } from "rxjs";
+import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: "root",
@@ -14,12 +14,12 @@ export class AccountService {
   // private currentUserSource = new ReplaySubject<User>(1);
   // currentUser$ = this.currentUserSource.asObservable();
 
-  baseUrl: string = "http://localhost:5000/api/account/";
+  baseUrl = environment.apiUrl;
   redirectUrl: string;
   
   login(model: any) {
     localStorage.setItem("username", model.username);
-    return this.http.post(this.baseUrl + "login", model).pipe(
+    return this.http.post(this.baseUrl + "account/login", model).pipe(
       map((response: User) => {
         const user = response;
         if (user) {
@@ -31,7 +31,7 @@ export class AccountService {
   }
 
   register(model: any) {
-    return this.http.post(this.baseUrl + "register", model);
+    return this.http.post(this.baseUrl + "account/register", model);
   }
 
   logOut() {

@@ -1,14 +1,98 @@
-<mat-card>
-  <mat-card-content>
-      <mat-selection-list #shoes [multiple]="false">
-          <mat-list-option *ngFor="let user of users" [value]="user">
-              {{ user.id }} --- {{ user.userName }}
-          </mat-list-option>
-      </mat-selection-list>
-      <mat-divider></mat-divider>
-      <br>
-      <mat-card-subtitle>
-          User Id: {{shoes.selectedOptions.selected[0]?.value.id}}
-      </mat-card-subtitle>
-  </mat-card-content>
-</mat-card> 
+<div class="main-wrapper">
+    <!--JOURNEYS AND STEPS WRAPPER-->
+    <button mat-button (click)="addRelease('UNPLANNED')">Add Release</button>
+    <div class="journey-wrapper">
+        <div cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="internalDropJourney($event)"
+            [cdkDropListData]="journeys" class="main-container" (mousewheel)="onWheel($event)" #journeyFrame>
+            <div class="journeys-group" cdkDropListGroup>
+                <div *ngFor="let journey of journeys; let i=index">
+                    <div class="m-b-1 journey-container" #journeys cdkDrag>
+                        <mat-card class="journey">
+                            <mat-card-header class="journey-header">
+                                <mat-card-title class="icon-container text-bold label journey-title">{{ (i + 1) +
+                                    '.'}}
+                                    {{ journey.title }}
+                                </mat-card-title>
+                                <span class="label add-step header-step-icon">
+                                    <mat-icon matTooltip="Add Step" (click)="addStep(journey, 'Step Content')">
+                                        note_add
+                                    </mat-icon>
+                                </span>
+                            </mat-card-header>
+                            <mat-card-content class="step-div" cdkDropList cdkDropListOrientation="horizontal"
+                                (cdkDropListDropped)="internalDrop($event, journey.id)"
+                                [cdkDropListData]="journey.steps">
+                                <div *ngFor="let step of journey.steps">
+                                    <mat-card class="step" cdkDrag #step>
+                                        <mat-card-subtitle class="step-id">{{(i + 1) + "." + step.id}}
+                                            <a class="edit-icon">
+                                                <mat-icon>edit</mat-icon>
+                                            </a>
+                                        </mat-card-subtitle>
+                                        <mat-card-content class="step-content">{{ step.content }}</mat-card-content>
+                                    </mat-card>
+                                    <div class="icon-container step-icon-position">
+                                        <mat-icon class="step-icon" (click)="addStep(journey, 'Step Content')" matTooltip="Add Step">add
+                                        </mat-icon>
+                                    </div>
+                                </div>
+                            </mat-card-content>
+                        </mat-card>
+                        <span class="label add-journey">
+                            <mat-icon (click)="addJourney(journey.id, 'New Journey')" matTooltip="Add Journey">
+                                add</mat-icon>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mvp-wrapper" *ngFor="let release of releases">
+        <div class="release-header">
+            <mat-divider></mat-divider>
+            <div class="mvp-wrapper-header">
+                <a class="menu-button" [matMenuTriggerFor]="menu">
+                    <mat-icon class="label">more_vert</mat-icon>
+                </a>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item>
+                        <mat-icon>delete_forever</mat-icon>
+                        <span>Delete Release</span>
+                    </button>
+                </mat-menu>
+                <div class="release-title">
+                    <p class="label">{{ release.name }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="story-wrappers-container" #releaseFrame>
+            <div *ngFor="let storyWrapper of release.wrappers" cdkDropList
+                [cdkDropListData]="release.wrappers" #wrappers>
+                <mat-card class="story-wrapper" cdkDropListGroup>
+                    <mat-card-content class="story-lane-wrapper">
+                        <div *ngFor="let lane of storyWrapper.lanes; let i = index">
+                            <div class="story-lane" cdkDropList [cdkDropListData]="lane.stories"
+                                (cdkDropListDropped)="internalDrop($event)">
+                                <div class="lane-stories-container">
+                                    <mat-card class="story" *ngFor="let story of lane.stories" cdkDrag>
+                                        <mat-card-content class="story-content">
+                                            <mat-card-subtitle class="story-id">{{ story.id }}</mat-card-subtitle>
+                                            <p class="story-text">{{ story.content }}</p>
+                                        </mat-card-content>
+                                    </mat-card>
+                                </div>
+                                <div class="lane-add-config" (click)="addStory(lane, 'Story Content')">
+                                    <a class="add-story-structure">
+                                        <mat-icon class="add-story-icon hard-label">add</mat-icon>
+                                        <p class="story-config-title hard-label">Add Story</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+                &nbsp;
+            </div>
+        </div>
+    </div>
+</div>

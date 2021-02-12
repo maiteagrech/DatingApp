@@ -1,28 +1,30 @@
 <mat-drawer-container class="example-container" autosize>
-    <mat-drawer #drawer mode="side">
-        <app-sidebar></app-sidebar>
-    </mat-drawer>
-    <mat-toolbar class="bg-green-light">
-        <mat-toolbar-row>
-            <span class="m-t-5">Dating App</span>
-            <button (click)="drawer.toggle()" mat-icon-button>
-                <mat-icon>menu</mat-icon>
-            </button>
-            <button id="mat-menu-button" [matMenuTriggerFor]="menu" mat-icon-button class="m-l-a">
-                <mat-icon>settings</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu" class="m-l-a">
-                <button mat-menu-item (click)='signOut()'>
-                    <mat-icon>login</mat-icon>
-                    <a><span>Log out</span></a>
+    <div>
+        <mat-drawer #drawer mode="side">
+            <app-sidebar></app-sidebar>
+        </mat-drawer> 
+        <mat-toolbar class="bg-green-light">
+            <mat-toolbar-row>
+                <span class="m-t-5">Dating App</span>
+                <button (click)="drawer.toggle()" mat-icon-button>
+                    <mat-icon>menu</mat-icon>
                 </button>
-            </mat-menu>
-        </mat-toolbar-row>
-    </mat-toolbar>
-    <ng-container>
-        <div class="container">
-            <router-outlet>
-            </router-outlet>
-        </div>
-    </ng-container>
+                <button id="mat-menu-button" [matMenuTriggerFor]="menu" mat-icon-button class="m-l-a">
+                    <mat-icon>settings</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu" class="m-l-a">
+                    <button mat-menu-item (click)='signOut()'>
+                        <mat-icon>login</mat-icon>
+                        <a><span>Log out</span></a>
+                    </button>
+                </mat-menu>
+            </mat-toolbar-row>
+        </mat-toolbar>
+        <ng-container>
+            <div class="container">
+                <router-outlet>
+                </router-outlet>
+            </div>
+        </ng-container>
+    </div>
 </mat-drawer-container>

@@ -15,11 +15,15 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { JwtModule } from "@auth0/angular-jwt";
 import { SharedModule } from "./shared/shared.module";
 import { ErrorInterceptor } from "./shared/interceptors/error.interceptor";
+import { AgGridModule } from 'ag-grid-angular';
+import { PerfectScrollbarConfigInterface, PerfectScrollbarModule } from "ngx-perfect-scrollbar";
 
 export function tokenGetter() {
   return localStorage.getItem("token");
 }
-
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true
+};
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,12 +47,15 @@ export function tokenGetter() {
     BrowserModule,
     SharedModule,
     BrowserAnimationsModule,
+    PerfectScrollbarModule,
+    AgGridModule.withComponents([])
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS, 
     useClass: ErrorInterceptor,
     multi: true
-  }],
+  }
+],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
