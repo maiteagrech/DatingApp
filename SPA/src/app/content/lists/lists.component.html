@@ -1,6 +1,6 @@
 <div class="main-wrapper">
     <!--JOURNEYS AND STEPS WRAPPER-->
-    <button mat-button (click)="addRelease('UNPLANNED')">Add Release</button>
+    <!-- <button mat-button (click)="addRelease('UNPLANNED')">Add Release</button> -->
     <div class="journey-wrapper">
         <div cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="internalDropJourney($event)"
             [cdkDropListData]="journeys" class="main-container" (mousewheel)="onWheel($event)" #journeyFrame>

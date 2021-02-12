@@ -68,7 +68,7 @@ export class ListsComponent implements OnInit, AfterViewInit {
     };
     this.journeys.push(initialJourney);
     this.addRelease("MVP");
-    this.addStoryWrapper(initialJourney.id);
+    this.addStoryWrapper(initialJourney.id, 0);
   }
   ngAfterViewInit() {
     this.journeysContainer = this.journeyFrame.nativeElement;
@@ -76,21 +76,15 @@ export class ListsComponent implements OnInit, AfterViewInit {
   }
   //PRIVATE METHODS
 
-  private addStoryWrapper(_journeyId: number, _idToStoryLane?: number) {
-    //aca entra si ya hay un wrapper
-    if (_idToStoryLane) {
-    }
-    //aca entra si no
-    else {
-      this.releases.forEach((release) => {
-        const newStoryWrapper: IStoryWrapper = {
-          id: release.wrappers.length + 1,
-          relatedJourneyId: _journeyId,
-          lanes: [],
-        };
-        release.wrappers.push(newStoryWrapper);
-      });
-    }
+  private addStoryWrapper(_journeyId: number, _index: number) {
+    this.releases.forEach((release) => {
+      const newStoryWrapper: IStoryWrapper = {
+        id: release.wrappers.length + 1,
+        relatedJourneyId: _journeyId,
+        lanes: [],
+      };
+      release.wrappers.splice(_index, 0, newStoryWrapper);
+    });
   }
   private addStoryLane(_wrapper: IStoryWrapper) {
     const newStoryLane: IStoryLane = {
@@ -101,12 +95,21 @@ export class ListsComponent implements OnInit, AfterViewInit {
   }
   //APP FUNCTIONALITY
   addRelease(releaseName: string) {
-    const newRelease: IRelease = {
+    if (this.releases.length != 0) {
+      const lastReleaseWrappers = this.releases[this.releases.length - 1]
+        .wrappers;
+      const newRelease: IRelease = {
+        id: this.releases.length + 1,
+        name: releaseName,
+        wrappers: lastReleaseWrappers,
+      };
+      this.releases.push(newRelease);
+    }
+    this.releases.push({
       id: this.releases.length + 1,
       name: releaseName,
       wrappers: [],
-    };
-    this.releases.push(newRelease);
+    });
   }
   addJourney(index: number, journeyTitle: string) {
     const newJourney: IJourney = {
@@ -115,7 +118,7 @@ export class ListsComponent implements OnInit, AfterViewInit {
       steps: [],
     };
     this.journeys.splice(index, 0, newJourney);
-    this.addStoryWrapper(newJourney.id);
+    this.addStoryWrapper(newJourney.id, index);
     this.journeysDiv.changes.subscribe((_) => {
       this.onJourneysChanged("activate");
     });
@@ -187,11 +190,7 @@ export class ListsComponent implements OnInit, AfterViewInit {
     event: CdkDragDrop<string[]>,
     _wrapper: IStoryWrapper
   ) {
-    moveItemInArray(
-      _wrapper.lanes,
-      event.previousIndex,
-      event.currentIndex
-    );
+    moveItemInArray(_wrapper.lanes, event.previousIndex, event.currentIndex);
   }
   //APP EVENTS
   onWheel(event: WheelEvent) {
